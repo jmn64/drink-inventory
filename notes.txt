@@ -1,0 +1,2 @@
+1. Add major/minor/patch and db_version variable as constant in main.go
+2. Create sql examples (start with simple shots)

@@ -1,3 +1,3 @@
 SELECT *
-FROM recipeItem
-ORDER BY recipeTag ASC;
+FROM recipe_item
+ORDER BY recipe_tag ASC;

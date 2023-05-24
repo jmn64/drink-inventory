@@ -14,32 +14,32 @@ CREATE TABLE recipe (
     id INT NOT NULL,
     name TEXT NOT NULL,
     rating INT,
-    dateCreated TEXT,
+    date_created TEXT,
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS recipeItem;
-CREATE TABLE recipeItem (
+DROP TABLE IF EXISTS recipe_item;
+CREATE TABLE recipe_item (
     id INT NOT NULL,
-    recipeTag INT NOT NULL,
+    recipe_tag INT NOT NULL,
     content INT NOT NULL,
     container INT,
-    FOREIGN KEY (recipeTag) REFERENCES recipe(id),
+    FOREIGN KEY (recipe_tag) REFERENCES recipe(id),
     FOREIGN KEY (content) REFERENCES ingredient (id),
     FOREIGN KEY (container) REFERENCES container(id),
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS inventoryItem;
-CREATE TABLE inventoryItem (
+DROP TABLE IF EXISTS inventory_item;
+CREATE TABLE inventory_item (
     id INT NOT NULL,
     content INT NOT NULL,
     container INT NOT NULL,
-    currentVolume INT NOT NULL,
-    unitOfMeasure INT NOT NULL,
+    current_volume INT NOT NULL,
+    unit_of_measure INT NOT NULL,
     FOREIGN KEY (content) REFERENCES ingredient (id),
     FOREIGN KEY (container) REFERENCES container(id),
-    FOREIGN KEY (unitOfMeasure) REFERENCES unitOfMeasure(id),
+    FOREIGN KEY (unit_of_measure) REFERENCES unit_of_measure(id),
     PRIMARY KEY (id)
 );
 
@@ -49,21 +49,21 @@ CREATE TABLE ingredient (
     name TEXT NOT NULL,
     abv DECIMAL(4, 2),
     category INT NOT NULL,
-    FOREIGN KEY (category) REFERENCES ingredientCategory(id),
+    FOREIGN KEY (category) REFERENCES ingredient_category(id),
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS ingredientCategory;
-CREATE TABLE ingredientCategory (
+DROP TABLE IF EXISTS ingredient_category;
+CREATE TABLE ingredient_category (
     id INT NOT NULL,
     name TEXT NOT NULL,
-    parentCategory INT,
-    FOREIGN KEY (parentCategory) REFERENCES ingredientCategory(id),
+    parent_category INT,
+    FOREIGN KEY (parent_category) REFERENCES ingredient_category(id),
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS unitOfMeasure;
-CREATE TABLE unitOfMeasure (
+DROP TABLE IF EXISTS unit_of_measure;
+CREATE TABLE unit_of_measure (
     id INT NOT NULL,
     name TEXT NOT NULL,
     PRIMARY KEY (id)
@@ -74,7 +74,7 @@ CREATE TABLE container (
     id INT NOT NULL,
     name TEXT NOT NULL,
     volume INT NOT NULL,
-    unitOfMeasure INT NOT NULL,
-    FOREIGN KEY (unitOfMeasure) REFERENCES unitOfMeasure(id),
+    unit_of_measure INT NOT NULL,
+    FOREIGN KEY (unit_of_measure) REFERENCES unit_of_measure(id),
     PRIMARY KEY (id)
 )
